@@ -1,11 +1,18 @@
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.js',
+    
+  ],
+  plugin: [
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     path: __dirname,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
@@ -20,7 +27,10 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
+    host: "0.0.0.0",
+    disableHostCheck: true,
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    hot: true
   }
 };
